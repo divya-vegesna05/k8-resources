@@ -6,6 +6,6 @@ metadata:
 spec:
   containers:
   - name: hello-pod
-    image: nginx
+    image: dockerdevops1994/ultimate-cicd:6
     ports:
     - containerPort: 80
