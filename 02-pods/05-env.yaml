@@ -9,14 +9,14 @@ metadata:
   annotations:
     com.roboshop.training.duration: "120 hrs"
     imageregistry: "https://hub.docker.com/"
-  env:
-  - name: DEMO_GREETING
-    value: "hello docker"
-  - name: HELLO
-    value: "hello from my world"
 spec:
   containers:
   - name: label
     image: nginx
     ports:
     - containerPort: 80
+    env:
+    - name: DEMO_GREETING
+      value: "hello docker"
+    - name: HELLO
+      value: "hello from my world"
