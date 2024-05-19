@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: annotations
+  namespace: roboshop
+  labels: 
+    app: nginx
+    environment: dev
+  annotations:
+    com.roboshop.training.duration: "120 hrs"
+    imageregistry: "https://hub.docker.com/"
+  env:
+  - name: DEMO_GREETING
+    value: "hello docker"
+  - name: HELLO
+    value: "hello from my world"
+spec:
+  containers:
+  - name: label
+    image: nginx
+    ports:
+    - containerPort: 80
