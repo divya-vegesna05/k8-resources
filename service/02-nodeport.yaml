@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-nodePort
+  name: nginx-nodeport
   labels:
     app: nginx-nodeport
     env: dev
