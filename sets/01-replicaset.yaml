@@ -10,7 +10,6 @@ spec:
     matchLabels: 
       app: nginx-replicaset
   template:
-    kind: Pod
     metadata:
       labels:
         app: nginx-replicaset
