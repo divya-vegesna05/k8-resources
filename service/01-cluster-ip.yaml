@@ -20,7 +20,7 @@ spec:
   ports:
   - port: 80
     protocol: TCP
-  - containerport: 80  
+  - containerPort: 80  
   selector:
     app: nginx-pod
     env: dev
