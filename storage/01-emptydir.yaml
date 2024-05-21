@@ -21,7 +21,6 @@ data:
     output:
       elasticsearch:
         hosts: ["elasticsearch:9200"]
- 
 ---
 apiVersion: v1
 kind: Pod
@@ -36,6 +35,7 @@ spec:
     volumeMounts:
     - name: nginx-logs
       mountPath:  /var/log/nginx
+
   - name: filebeat-sidecar
     image: docker.elastic.co/beats/filebeat:7.17.3
     volumeMounts:
@@ -45,13 +45,12 @@ spec:
       mountPath:  /usr/share/filebeat/filebeat.yml
       subPath: filebeat.yml
 
-
   volumes:
   - name: nginx-logs
     emptyDir: {}
   - name:  filebeat-config 
     configMap:
       name: filebeat-config
-        items:
-        - key: filebeat.yml
-          path: filebeat.yml
+      items:
+      - key: filebeat.yml
+        path: filebeat.yml
