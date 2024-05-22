@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ebs-claim-dynamic
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ebs-sc
+  resources:
+    requests:
+      storage: 4Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ebs-dynamic
+  labels:
+    volume: ebs
+    provision: dynamic
+spec:
+  containers:
+  - name: nginx-pod
+    image: nginx
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: persistent-storage-dynamic
+      mountPath: /usr/share/nginx/html
+  nodeSelector:
+    zone: 1b
+  volumes:
+  - name: persistent-storage-dynamic
+    persistentVolumeClaim:
+      claimName: ebs-claim-dynamic
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service-dynamic
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80  
+  selector:
+    volume: ebs
+    provision: dynamic
