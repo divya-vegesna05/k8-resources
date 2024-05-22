@@ -8,6 +8,7 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
+  storageClassName: ""
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: efs.csi.aws.com
@@ -42,6 +43,8 @@ spec:
     volumeMounts:
     - name: persistent-storage-efs
       mountPath: /usr/share/nginx/html
+  nodeSelector:
+    zone: 1b
   volumes:
   - name: persistent-storage-efs
     persistentVolumeClaim:
