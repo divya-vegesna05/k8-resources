@@ -41,11 +41,12 @@ spec:
     volumeMounts:
     - name: persistent-storage
       mountPath: /usr/share/nginx/html
+  nodeSelector:
+    zone: 1b
   volumes:
   - name: persistent-storage
     persistentVolumeClaim:
       claimName: ebs-claim
----
 ---
 apiVersion: v1
 kind: Service
